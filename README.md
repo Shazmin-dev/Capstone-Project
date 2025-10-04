@@ -1,1 +1,1 @@
-# Imperial College Capstone-Project
+# Imperial College MLAI Capstone-Project
