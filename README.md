@@ -13,3 +13,6 @@ Description of which hyperparameters you have and how you chose to optimise them
 
 # RESULTS
 A summary of your results and what you can learn from your model
+
+# (OPTIONAL: CONTACT DETAILS)
+If you are planning on making your github repo public you may wish to include some contact information such as a link to your twitter or an email address.
