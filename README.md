@@ -55,7 +55,13 @@ It mirrors how optimisation is done in practice — where uncertainty, limited i
 A summary of the data you’re using, remembering to include where you got it and any relevant citations.
 
 # MODEL
-A summary of the model you’re using and why you chose it.
+🔍 Optimisation Approach: Bayesian Optimisation with Gaussian Process
+Overview
+
+For this project, I used Bayesian Optimisation with a Gaussian Process (GP) to search for the maximum of each unknown function.
+
+This approach is designed for problems where:
+The function is unknown, evaluations are expensive or limited where we need to make the most of every single query rather than randomly guessing inputs, this method builds a smart prediction model that improves over time.
 
 # HYPERPARAMETER OPTIMSATION
 Description of which hyperparameters you have and how you chose to optimise them.
