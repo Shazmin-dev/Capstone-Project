@@ -1,53 +1,43 @@
 # Imperial College London ML AI Capstone-Project
 # NON-TECHNICAL EXPLANATION OF YOUR PROJECT
 🧠 Black-Box Optimisation Capstone Project
-What is this challenge about?
 
+The goal of this project is to apply skills learnt in this programme to real-world projects.
+This project explores algorithms for black-box optimization—learning how to tune parameters efficiently when the function itself is hidden. The goal is to build practical skills for hyperparameter tuning and real-world ML challenges.
+Tech Stack: Python, Jupyter Notebooks, NumPy, Pandas, Scipy, Scikit-learn, Matplotlib.
+
+What is this challenge about?
 This capstone project simulates a real-world optimisation challenge inspired by Bayesian optimisation competitions.
 The goal is simple to describe but difficult to solve:
-
 We are required to find the maximum value of eight unknown functions. We are not given the equations, graphs, or internal details of these functions. They are treated as black boxes — we can only submit input values (guesses) and observe the output (the result).
 
-Why is this important?
-
 This setup reflects many real-world machine learning and engineering problems where:
-Testing is expensive
-Experiments are time-consuming
-Data is limited
-The internal system is unknown
+-Testing is expensive
+-Experiments are time-consuming
+-Data is limited
+-The internal system is unknown
 
 Examples include:
-
-Detecting radiation levels safely
-Tuning robot control systems
-Discovering effective drug compounds
-Optimising industrial processes
+-Detecting radiation levels safely
+-Tuning robot control systems
+-Discovering effective drug compounds
+-Optimising industrial processes
 
 In these situations, we cannot try every possible option. Instead, we must make carefully chosen, intelligent guesses.
 
 What makes it challenging?
-
-For each of the eight unknown functions:
-
-We start with only a small amount of initial data
-We are allowed a limited number of evaluations
-Each new guess must be chosen strategically
-Every evaluation counts because we don’t know what the function looks like, we must balance:
-
+For each of the eight unknown functions, we start with only a small amount of initial data, We are allowed a limited number of evaluations where each new guess must be chosen strategically. Every evaluation counts because we don’t know what the function looks like, we must balance through:
 Exploration – testing new areas to learn more
 Exploitation – refining areas that already look promising
 
 There is no perfect solution expected. The emphasis is on:
 Thoughtful experimentation, learning from results, adapting strategies over time demonstrating a clear reasoning process.
 
-What this project demonstrates
-
-This capstone is less about “winning” and more about showing:
-
-Structured problem-solving
-Intelligent trial-and-error
-Transparent decision-making
-Clear reflection on results
+The Project demonstrates the following skills and techniques:
+-Structured problem-solving
+-Intelligent trial-and-error
+-Transparent decision-making
+-Clear reflection on results
 
 It mirrors how optimisation is done in practice — where uncertainty, limited information, and iterative improvement are the norm.
 
