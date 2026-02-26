@@ -17,14 +17,6 @@ This setup reflects many real-world machine learning and engineering problems wh
 -Data is limited
 -The internal system is unknown
 
-Examples include:
--Detecting radiation levels safely
--Tuning robot control systems
--Discovering effective drug compounds
--Optimising industrial processes
-
-In these situations, we cannot try every possible option. Instead, we must make carefully chosen, intelligent guesses.
-
 What makes it challenging?
 For each of the eight unknown functions, we start with only a small amount of initial data, We are allowed a limited number of evaluations where each new guess must be chosen strategically. Every evaluation counts because we don’t know what the function looks like, we must balance through:
 Exploration – testing new areas to learn more
