@@ -49,7 +49,7 @@ The function is unknown, evaluations are expensive or limited where we need to m
 Description of which hyperparameters you have and how you chose to optimise them.
 
 # RESULTS
-A summary of the results and what I have learnt from your model will be written up closer to the end of the programme
+A summary of the results and what I have learnt from the model will be written up closer to the end of the programme
 
 <img width="750" height="446" alt="image" src="https://github.com/user-attachments/assets/71938141-6713-4fca-a0e0-8e3f1f992f4c" />
 
