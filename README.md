@@ -34,7 +34,21 @@ The Project demonstrates the following skills and techniques:
 It mirrors how optimisation is done in practice — where uncertainty, limited information, and iterative improvement are the norm.
 
 # DATA
-A summary of the data you’re using, remembering to include where you got it and any relevant citations.
+The data used in this project is provided as part of the capstone challenge materials. It comprises eight distinct datasets, each corresponding to a separate black-box optimisation task. These tasks represent objective functions with input dimensionalities ranging from 2 to 8.
+
+For each function, the dataset includes:
+
+Input matrix (.npy format): Each row represents a previously evaluated point in the parameter space, with dimensionality specific to the task (2D–8D).
+Output vector (.npy format): A one-dimensional array containing the scalar objective values associated with each input point.
+
+Each dataset is initialised with ten observations, which serve as seed data for guiding the optimisation process.
+
+The data is synthetic, but designed to reflect realistic optimisation scenarios such as hyperparameter tuning, chemical process optimisation, and resource allocation. As such, it incorporates key characteristics including noise, non-linearity, and the presence of local optima.
+
+Datasets are loaded and explored using Python’s NumPy library (e.g., np.load()), and additional data points are generated iteratively by querying the black-box functions through the capstone project submission portal.
+
+Data Source:
+Capstone Project: Black-Box Optimisation — provided via the programme learning platform (internal course material; not publicly available).
 
 # MODEL
 🔍 Optimisation Approach: Bayesian Optimisation with Gaussian Process
