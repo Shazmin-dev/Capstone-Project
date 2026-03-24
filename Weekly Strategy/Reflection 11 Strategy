@@ -1,0 +1,48 @@
+In this 11th round, my query choices were shaped much more by the structure of the search space I’ve inferred than by isolated function values. Looking back at my first ten rounds, I can see clear regions of interest emerging—areas where local improvements have been consistent, and others where returns have flattened out.
+
+Patterns influencing my latest choices
+For several functions, earlier queries revealed gently improving trajectories along certain coordinates, suggesting a local gradient even though I never observe it directly. I’ve tended to place new points just beyond previously good regions—close enough to exploit, but far enough to test whether the apparent trend continues or bends. Where past queries showed noisy or inconsistent improvements, I’ve either reduced sampling or shifted to more exploratory points.
+
+Clusters and recurring regions
+I’ve started to think of my search history as forming clusters in input space:
+
+Promising clusters: Regions where multiple nearby queries all achieved relatively good objective values. These look like “basins” worth refining, so my new points often sit near the empirical centroid of these good points, or slightly offset along the most promising coordinate.
+
+Unpromising clusters: Areas where several queries produced consistently poor values. I now treat these as “noise” regions and avoid expanding them unless I suspect I might have only skimmed the boundary of a better basin.
+
+In some functions, I don’t yet see a tight cluster—just scattered moderate values—so my 11th queries there are more exploratory, probing gaps between previous samples.
+
+Less effective strategies and adjustments
+Earlier on, I sometimes:
+
+Sampled too close to previous points, effectively “overfitting” to local noise.
+
+Spread queries too uniformly, which slowed down convergence once a promising region appeared.
+
+Now I’m:
+
+Increasing local density only where there is a clear pattern of improvement.
+
+Reducing effort in flat or consistently poor regions.
+
+Being more deliberate about step sizes—neither tiny (pure exploitation) nor huge (random exploration), but tuned to the apparent scale of variation.
+
+Parallels with clustering
+These refinements mirror how clustering algorithms separate signal from noise:
+
+I’m implicitly forming clusters of high-performing points and treating their centroid and spread as guides for new queries.
+
+Poor regions act like outlier clusters or low-density areas that I down‑weight.
+
+I’m effectively tightening “decision boundaries” between promising and unpromising regions, similar to how clustering refines assignments as centroids move.
+
+Expected trends if plotted
+If I plotted all past queries:
+
+In input space, I’d expect to see dense pockets of points around promising regions and sparser coverage elsewhere.
+
+In value space, I’d likely see bands of higher performance associated with those spatial clusters.
+
+Over iterations, I’d expect a visible migration of query points toward these high‑value clusters, with fewer points in clearly poor areas.
+
+These visual groupings would guide my next iteration: deepen sampling around the strongest clusters, lightly probe their boundaries to avoid getting trapped in a local optimum, and largely ignore regions that now look like well‑characterised low‑value noise.
