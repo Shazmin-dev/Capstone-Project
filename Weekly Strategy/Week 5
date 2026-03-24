@@ -1,0 +1,24 @@
+Reflection on optimisation strategy (Round 5)
+Hierarchical feature learning and optimisation strategy
+
+The idea of hierarchical feature learning influenced how I approached refinement in this round by encouraging me to think in terms of progressive abstraction. Earlier queries helped identify coarse-grained regions of interest in the search space, similar to how early neural network layers learn low-level features. In this fifth round, I focused more on refining queries within those promising regions, effectively “stacking” higher-level insights on top of earlier exploratory signals. Rather than treating each query independently, I viewed the accumulated data as layered knowledge that could guide more targeted sampling.
+
+Parallels with breakthroughs like AlexNet and ImageNet
+
+The success of AlexNet demonstrated that major performance gains often come not from a single radical step, but from combining incremental improvements—better architectures, more data, and stronger optimisation. This parallels the capstone experience, where each query rarely produces a dramatic leap on its own, but collectively they improve understanding of the unknown functions. My fifth submission reflects this mindset: it builds on marginal gains from previous rounds rather than attempting a risky global leap, reinforcing the value of cumulative progress.
+
+Exploration vs exploitation trade-offs
+
+I encountered a clear trade-off between exploring new areas of the domain and exploiting regions that previously showed promising responses. Similar to choosing between deeper or wider neural networks, wider exploration offers robustness but is inefficient, while exploitation increases precision but risks missing better optima. In this round, I leaned slightly more toward exploitation, refining known high-performing regions while still allowing limited exploration to avoid premature convergence.
+
+Neural network building blocks and learning perspective
+
+Among the core neural network concepts, loss and gradients most influenced how I thought about learning from the accumulated data. Although the optimisation is black-box, I treated differences between observed outputs as a proxy loss signal and adjusted future queries in directions that appeared to reduce that loss. This helped me see the process as iterative learning rather than trial-and-error sampling, where each new query updates an implicit “belief” about the function landscape.
+
+Framing the approach as a ‘framework’
+
+If I were to describe my current optimisation approach in terms of a deep learning framework, it aligns more closely with rapid prototyping and flexibility than production-ready design. Like working in PyTorch, the strategy is adaptive, exploratory, and easy to modify between iterations. The emphasis is on learning quickly from feedback rather than enforcing rigid structure, which is appropriate given the uncertainty and limited number of queries.
+
+Benchmarking success through real-world use cases
+
+Giovanni Liotta’s discussion of deep learning in sport highlighted how success is often measured relative to practical impact rather than theoretical optimality. Applying that perspective to the capstone, I see success not as perfectly identifying the global optimum, but as making efficient, informed improvements under constraints. This reinforces the idea that progress should be benchmarked against resource efficiency and learning rate, mirroring real-world deployments of deep learning systems.
