@@ -1,0 +1,100 @@
+Reflection on Tenth Round Strategy
+1. Reasoning Behind My Tenth-Round Queries
+For the tenth round, my strategy was guided by Bayesian Optimisation using a Gaussian Process surrogate model. The GP provided a probabilistic model of each unknown function, giving both:
+
+A posterior mean (expected value of the function)
+
+A posterior variance (uncertainty estimate)
+
+I selected new query points by balancing exploitation and exploration, primarily using an acquisition function (e.g., Expected Improvement or Upper Confidence Bound logic).
+
+For functions where previous rounds showed a clear region of high values and low uncertainty, I shifted toward exploitation, querying near the current predicted optimum to refine it.
+
+For functions where:
+
+The GP uncertainty remained high, or
+
+The surface appeared multi-modal or noisy,
+
+I prioritised exploration, selecting points in high-variance regions to reduce uncertainty and avoid premature convergence.
+
+Patterns from earlier rounds influenced my choices significantly:
+
+If previous samples showed smooth behaviour, I assumed local continuity and refined locally.
+
+If I observed sharp variation or unexpected jumps, I sampled more broadly.
+
+If convergence appeared stable over the last few rounds, I reduced exploratory weight.
+
+Thus, each function’s tenth query reflected its individual uncertainty structure and convergence behaviour.
+
+2. Transparency and Reproducibility
+My decision-making process is moderately transparent because it follows a structured Bayesian framework:
+
+Gaussian Process prior assumptions
+
+Kernel choice
+
+Acquisition function rule
+
+Exploration–exploitation trade-off parameter
+
+Another researcher could reproduce my strategy if they had:
+
+The full dataset from all previous rounds
+
+My GP kernel specification (e.g., RBF, Matern)
+
+Hyperparameter values or optimisation method
+
+The acquisition function definition and tuning parameters
+
+Without those details, especially kernel choice and acquisition settings, exact reproduction would be difficult. Therefore, full transparency requires documenting:
+
+Kernel type and length-scale assumptions
+
+Noise model
+
+Acquisition parameter values (e.g., beta in UCB)
+
+3. Key Assumptions
+One major assumption is that the underlying functions are smooth and well-modelled by a Gaussian Process prior. This implies:
+
+Nearby points have correlated outputs.
+
+There are no extreme discontinuities.
+
+The kernel appropriately captures the function’s structure.
+
+If the true function violates smoothness (e.g., abrupt jumps or high-frequency oscillations), the GP may misrepresent uncertainty, causing overconfidence in incorrect regions.
+
+Another assumption is that noise is either low or Gaussian-distributed. If noise is heteroscedastic or heavy-tailed, the model may underestimate uncertainty.
+
+These assumptions shape my results by encouraging local refinement and smooth extrapolation.
+
+4. Gaps and Potential Biases in My Dataset
+Several potential biases exist:
+
+Spatial clustering bias: Many queries concentrate around predicted optima, leaving peripheral regions under-sampled.
+
+Early-round anchoring: Initial samples may have influenced posterior structure in ways that shaped later exploration.
+
+Underexplored high-uncertainty regions: Some high-variance areas remain unsampled because acquisition values were lower relative to promising optima.
+
+This means my search space coverage is uneven. If the global optimum lies in an underexplored region, it might remain undiscovered.
+
+5. Significant Limitation of My Approach
+A key limitation is the computational and iteration constraint. With only ten rounds:
+
+The GP posterior is based on relatively few observations.
+
+Hyperparameter optimisation may be unstable.
+
+Exploration is inherently limited.
+
+Additionally, Bayesian Optimisation tends to focus heavily on areas predicted to be promising. If early models are mis-calibrated, later rounds may reinforce incorrect beliefs.
+
+Finally, the approach assumes the objective function remains static. If the function were non-stationary or dynamic, the model would not adapt appropriately.
+
+Conclusion
+My tenth-round queries reflect a principled Bayesian strategy balancing exploration and exploitation through Gaussian Process uncertainty modelling. While structured and reproducible in principle, the approach depends heavily on smoothness assumptions, kernel choice, and limited sampling. These constraints shape both the strengths and the limitations of my optimisation process.
