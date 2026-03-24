@@ -1,0 +1,29 @@
+Reflection on Query Strategy (Plan for Third Iteration)
+
+Across all three rounds, my core query strategy has remained grounded in Gaussian Process regression, but my interpretation and use of the GP have evolved. In the first round, I treated the GP primarily as a smooth interpolator and used it somewhat naively to suggest promising regions. By the third iteration, I rely more explicitly on the GP’s predictive mean and uncertainty estimates to justify where I query next, even though the underlying method has not changed. The strategy itself is stable, but my confidence in reading the model’s signals has improved.
+
+At this stage, I rely more on model predictions than on blind exploration. Early on, much of my querying was exploratory, aimed at learning the shape of the response surface. Now, with more data available, I trust the GP’s posterior mean to indicate high-performing regions, while still using predictive variance as a guide to avoid becoming overly confident too early. I have not aggressively tuned GP hyperparameters; instead, I have relied on reasonable defaults and marginal likelihood optimisation. This choice was deliberate, as I wanted to avoid overfitting through excessive manual tuning and keep the process principled rather than heuristic heavy.
+
+Exploration vs Exploitation Balance
+
+The balance between exploration and exploitation has clearly shifted over iterations. In the first round, exploration dominated: I sampled broadly to understand the domain. By the third iteration, exploitation plays a larger role. I focus more on regions where the GP predicts strong performance, especially where uncertainty is low enough to suggest robustness.
+
+That said, I still reserve some queries for regions with higher uncertainty, particularly near the boundaries of known good areas. This prevents premature convergence and guards against the GP being confidently wrong. In effect, I am implicitly using an acquisition-function-like logic (similar to Upper Confidence Bound), even if I am not formally implementing one. The GP’s uncertainty remains a critical factor in deciding when exploration is still warranted.
+
+How SVMs might change the approach
+
+Introducing Support Vector Machines (SVMs) would fundamentally shift the framing of the problem. Rather than modelling the response surface directly, I could recast the task as a classification problem distinguishing high-performance from low-performance regions. A soft-margin SVM would be particularly useful in handling noisy observations near the decision boundary, where performance differences are small or inconsistent.
+
+A kernel SVM could be valuable if the response surface is highly non-linear, as it would allow flexible decision boundaries without explicitly modelling the entire surface. However, unlike GPs, SVMs would not naturally provide uncertainty estimates. This would make exploration more challenging, as I would lose a principled way to quantify uncertainty in untested regions. As a result, SVMs might be more effective later in the process, once enough data exists to reliably separate good and bad regions, rather than as an early-stage exploratory tool.
+
+Limitation of the current GP model
+
+As the dataset grows, several limitations of the GP become more apparent. Computational scalability is a concern, as GP inference becomes more expensive with increasing data. Additionally, there are signs that the model may begin to overfit locally, especially if the kernel length scales shrink too much during optimization.
+
+Another limitation is that some input dimensions appear to contribute little to predictive performance. While the GP can partially account for this through learned length scales, it does not automatically remove irrelevant features. This suggests that feature selection or dimensionality reduction could improve performance in later iterations.
+
+Broader Lessons from the Black Box
+
+This black-box optimization setup closely mirrors real-world data science problems, where the true data-generating process is unknown and experimentation is costly. It reinforces the importance of iteratively updating beliefs, quantifying uncertainty, and making decisions under incomplete information. Working with GPs has strengthened my intuition for probabilistic modelling and taught me to be cautious about overconfidence in model predictions.
+
+The experience highlights that effective data science is not about finding a single correct model, but about making disciplined, justifiable decisions as new information arrives.
