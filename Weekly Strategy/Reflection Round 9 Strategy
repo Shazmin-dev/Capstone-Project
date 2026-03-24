@@ -1,0 +1,37 @@
+Reflection on Round 9 Strategy
+
+Scaling laws and query choices
+
+With 18 prior data points per function, scaling effects are becoming clearer. Early rounds produced steep gains because each query significantly reduced uncertainty. Now, improvements are more incremental, suggesting diminishing returns in some regions of the search space. For smoother functions, performance gains appear to follow a predictable power-law-like improvement: additional samples still help, but the marginal value of each query is shrinking.
+
+As a result, my current query choices are more targeted. Instead of broad exploration, I am focusing on high-variance or high-potential regions identified by local gradients or surrogate modelling trends. However, I am careful not to overfit to apparent local optima. Where performance plateaus, I introduce slight exploratory shifts to test whether the surface is genuinely flat or if I am missing a sharper basin nearby.
+
+Emergent behaviours and expectation management
+
+Emergent behaviours in a black-box optimisation setting may appear as sudden performance spikes, unexpected discontinuities or highly sensitive regions. These can distort assumptions derived from smooth interpolation between previous points. I have noticed that some functions display non-linear responses after modest coordinate shifts, suggesting hidden structure that was not visible in early iterations.
+
+To prepare for this, I am allocating at least a small portion of my query strategy to “structured exploration”: probing regions that are not currently optimal but could reveal new gradients or curvature. I am also spacing certain queries strategically to test for abrupt regime changes rather than assuming uniform smoothness.
+
+This approach acknowledges that scaling more queries does not just refine existing knowledge—it can also unlock qualitatively different behaviour.
+
+Trade-offs between cost, robustness and performance
+
+At round nine, cost-awareness is more salient. Each query represents a constrained opportunity, so my strategy must balance exploitation (maximising near-term performance gains) with robustness (avoiding premature convergence to a misleading region).
+
+Performance-focused querying would concentrate tightly around the current best region. However, this increases fragility if the function contains deceptive local optima. A more robust strategy spreads queries across nearby but distinct subregions to validate stability. I am leaning toward slightly conservative exploitation: clustering near promising areas but not collapsing entirely into a single coordinate neighbourhood.
+
+This trade-off reflects black-box constraints: limited interpretability increases the risk of overconfidence in observed trends.
+
+Predictable optimisation vs emergent risk
+
+Predictable optimisation assumes continuity, smooth gradients and diminishing variance over time. Emergent behaviour introduces the possibility of sudden, uneven capability jumps—large improvements from small coordinate changes. Balancing these requires a hybrid strategy.
+
+My approach is to use predictable optimisation as the backbone (leveraging surrogate trends, observed gradients and historical performance), while systematically reserving queries that test structural assumptions. For example, when I observe steady improvement along one dimension, I slightly perturb secondary dimensions to test interaction effects rather than extrapolating linearly.
+
+In essence, I treat optimisation as locally predictable but globally uncertain. I avoid extreme risk-taking, yet I do not eliminate exploration entirely. This measured balance helps maintain upward progress while preserving sensitivity to unexpected shifts.
+
+Overall strategic shift
+
+Compared to earlier rounds, my strategy is now more data-informed and less speculative. The growing dataset enables pattern recognition, but it also highlights where uncertainty persists. Scaling has improved stability in some functions, yet the possibility of emergent structure prevents full reliance on extrapolation.
+
+Round nine, therefore, reflects a mature optimisation phase: cautious exploitation, selective exploration and conscious management of diminishing returns under black-box constraints.
