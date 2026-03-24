@@ -60,7 +60,34 @@ This approach is designed for problems where:
 The function is unknown, evaluations are expensive or limited where we need to make the most of every single query rather than randomly guessing inputs, this method builds a smart prediction model that improves over time.
 
 # HYPERPARAMETER OPTIMSATION
-Description of which hyperparameters you have and how you chose to optimise them.
+What principle or heuristic did you use to decide on each query point?
+For my first submission, I used a Gaussian Process (GP)–based Bayesian optimisation strategy for all eight functions. My overall aim was to balance exploitation (sampling where the GP predicts high values) and exploration (sampling where uncertainty is high).
+
+For the 2D and 3D functions, I chose lower exploration values so the surrogate model could form a stable foundation. For the higher-dimensional functions, I increased exploration to help the GP probe uncertain regions more effectively.
+
+Overall, my decisions were guided by choosing points that offered the best trade-off between high predicted output and high uncertainty.
+
+ 
+
+Which functions were most challenging to query, and why? What extra information would have helped?
+The higher-dimensional functions (6–8) were the most difficult. Their large input spaces and limited initial data make it hard for the GP to model uncertainty accurately. With only ten initial observations, it becomes challenging to identify promising areas early on.
+
+More initial data or some domain knowledge about likely parameter ranges would have made the search more efficient and allowed the GP to guide exploration with more confidence.
+
+Lower-dimensional functions were easier to work with such as functions 2-4. Having two queries per round made it possible to try both low and moderate values, encouraging useful exploration and reducing the chance of missing isolated peaks.
+
+ 
+
+How will you adjust your strategy in future rounds?
+For future rounds as more data becomes available I plan to adjust how I balance exploration and exploitation. As the GP model becomes better trained, I will gradually move from exploration toward exploitation to refine values.
+
+For high-dimensional functions, I will generate near the current best point and in nearby unexplored regions to avoid local optima.
+
+I also plan to use more concrete rules—such as detecting stagnation, monitoring uncertainty levels, checking surrogate model performance, or switching between acquisition functions (e.g., EI and UCB). If a function appears noisy, I may add repeated evaluations.
+
+Since one new data point will be obtained each week, I will track the GP’s UCB and EI values over time to make more informed decisions.
+
+In summary, my current submission relied on a principled mix of exploration and exploitation, guided by the GP model. Higher-dimensional functions were the most challenging due to limited initial data and large search spaces.
 
 # RESULTS
 A summary of the results and what I have learnt from the model will be written up closer to the end of the programme
