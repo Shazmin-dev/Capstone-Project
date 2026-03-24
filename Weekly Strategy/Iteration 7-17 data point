@@ -1,0 +1,22 @@
+Reflection on prompting and decoding strategy (Iteration 7 / 17 data points)
+
+Prompt patterns used
+Across iterations, I primarily relied on zero-shot and lightly structured prompts rather than few-shot examples. Zero-shot prompts reduced the risk of overfitting to earlier observations and kept the model’s behaviour more exploratory, which is important in a black-box optimisation setting. When I experimented with more structured prompts (explicit constraints, step-by-step reasoning), outputs became more consistent but less sensitive to subtle variations in inputs. Simplifying prompts tended to increase variance, while structured prompts improved stability at the cost of diversity.
+
+Decoding settings and trade-offs
+I selected relatively conservative decoding parameters: a low-to-moderate temperature, moderate top-P, minimal or disabled top-K, and a controlled max-tokens limit. Lower temperature improved coherence and reduced hallucinations, which was important when evaluating outputs for optimisation signals. Increasing temperature or top-P produced more diverse responses, but this often introduced noise that made comparisons between query points less reliable. Max-tokens limits helped constrain outputs and ensured comparability across runs, though occasionally at the expense of completeness.
+
+Token boundaries and input effects
+I monitored tokenisation effects by checking token counts and rephrasing inputs with unusual strings or long numeric sequences. In a few cases, rewording reduced unexpected splits and improved consistency. I did not encounter hard truncation, but I remained aware of soft truncation effects where longer prompts shifted attention away from earlier instructions. To mitigate this, I kept prompts concise and front-loaded critical constraints.
+
+Limitations with 17 data points
+With only 17 observations, several limitations became apparent. Prompt overfitting was a risk: incorporating too much detail from previous outputs sometimes caused the model to latch onto patterns that were likely noise. I also observed diminishing returns from longer prompts—additional context did not meaningfully improve performance and occasionally distracted the model. Attention sometimes focused on irrelevant phrasing rather than the core optimisation objective, reinforcing the need for minimalism.
+
+Hallucination reduction strategies
+To reduce hallucinations, I used tighter instructions, explicit constraints on acceptable outputs and, where possible, fixed output formats. I avoided speculative language in prompts and limited open-ended phrasing. Rather than retrieval of external information, I relied on reinforcing internal consistency by referencing only clearly relevant prior observations.
+
+Scaling strategies for future rounds
+In future rounds with larger datasets or more complex models, I would adopt more systematic prompt templating and automated checks for token length and formatting. I would also consider adaptive decoding—starting with conservative settings and selectively increasing diversity when exploration is needed. For larger models, transferring prompt patterns that proved robust at smaller scales would be more efficient than re-tuning from scratch.
+
+Practitioner perspective
+These design choices reinforced a practitioner mindset focused on balancing exploration, risk and cost. In a black-box environment with incomplete information, perfect optimisation is unrealistic; instead, the goal is to extract reliable signal per unit of computation. Prompting and decoding became tools for managing uncertainty, controlling variance and making efficient use of limited query budgets rather than simply maximising output quality.
