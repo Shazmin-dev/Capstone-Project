@@ -1,0 +1,49 @@
+Reflection on My Strategy (Week 2)
+I have not received the results for my first round
+1.	What was the main change in your strategy this week compared to last week? What prompted this change?
+Although there has been no significant change I will continue using a Gaussian Process (GP)–based Bayesian optimisation strategy, the main change this week is to explore how I balance exploration and exploitation.
+With one additional data point per function, the GP surrogate will become slightly more confident in certain regions. This prompts me to:
+•	Increase exploitation in functions where the GP posterior mean showed a clear emerging peak.
+•	Maintain or increase exploration in higher-dimensional functions where uncertainty remained high and the model showed no strong preference.
+These adjustments will be prompted by the acquisition function behaviour (mainly UCB and EI values), which highlighted areas where uncertainty had decreased versus where the model still lacked information.
+ 
+2.	Did you focus more on exploration or exploitation? Why? What trade-offs did you weigh?
+My focus will be varied by function:
+•	Low- to medium-dimensional functions (2–4):
+I leaned more toward exploitation, because the GP models showed clearer structure and the new data helped reduce uncertainty around promising regions.
+•	High-dimensional functions (6–8):
+I placed more emphasis on exploration, given the wide input domain and the still-high posterior variance. Early exploitation here risks getting stuck in local optima.
+The trade-off I faced was:
+•	Exploitation can produce immediate gains but risks missing distant peaks.
+•	Exploration improves long-term performance but may waste queries in low-value regions.
+I tried to balance both based on the GP’s uncertainty maps.
+ 
+3.	Have any participant strategies, class discussions or recent outputs influenced this week’s submission?
+Yes. Class discussions on:
+•	the danger of overly aggressive exploitation in early rounds,
+•	and the limitations of GPs in high dimensions
+reinforced the need for more structured exploration in the higher-dimensional functions.
+Some participants also mentioned using diversity-based candidate sampling, which influenced my decision to test points that differed more from last week’s choices in functions 6–8.
+ 
+4.	If you fitted a simple linear or logistic regression model to your current data, which assumptions would likely be violated?
+Several assumptions would almost certainly be violated:
+•	Linearity:
+The response surfaces are likely highly nonlinear with peaks, valleys, and interactions. A linear model would oversimplify the structure.
+•	Independence and homoscedasticity:
+GP residuals show varying uncertainty, suggesting heteroscedasticity.
+•	Feature–response relationship:
+The functions may have curved manifolds or multimodal behaviour that linear or logistic models cannot represent.
+Given these nonlinear surfaces and limited data, a simple regression model would be structurally misspecified.
+ 
+5.	Are there regions where the output appears roughly linear, or where a decision boundary might form? How would logistic regression perform?
+In some of the lower-dimensional functions, small local neighbourhoods appear approximately linear, but only over short ranges.
+A logistic regression classifier could perform reasonably if converted into a binary task, such as predicting whether values exceed a threshold. However, it would still struggle because:
+•	the decision boundaries are unlikely to be linear,
+•	local peaks might appear disconnected,
+•	and small datasets make boundary estimation unstable.
+Thus, logistic regression might only capture coarse patterns, not meaningful structure.
+ 
+6.	Did interpretability help when considering individual feature effects?
+Linear and logistic regression frameworks encourage thinking about feature-wise effects, which helped me quickly check whether certain dimensions might be more influential. However, because the actual functions are likely nonlinear and interactive, these interpretations were only partially useful.
+In the end, the GP model’s uncertainty and acquisition function feedback were far more informative for selecting my query points. I will await for my previous submission results.
+
