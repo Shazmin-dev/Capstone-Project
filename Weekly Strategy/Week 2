@@ -1,5 +1,5 @@
 Reflection on My Strategy (Week 2)
-I have not received the results for my first round
+
 1.	What was the main change in your strategy this week compared to last week? What prompted this change?
 Although there has been no significant change I will continue using a Gaussian Process (GP)–based Bayesian optimisation strategy, the main change this week is to explore how I balance exploration and exploitation.
 With one additional data point per function, the GP surrogate will become slightly more confident in certain regions. This prompts me to:
