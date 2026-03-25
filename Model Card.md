@@ -1,22 +1,23 @@
-Model Card: Adaptive GP-UCB Optimiser
-Overview
+#Model Card: Adaptive GP-UCB Optimiser
+
+#Overview
 
 Name: Adaptive Gaussian Process Optimiser (GP-UCB)
 Type: Bayesian Optimisation Surrogate Model
 
 This model implements an adaptive Gaussian Process Upper Confidence Bound (GP-UCB) strategy for efficient optimisation under strict query constraints. The approach evolves over time by dynamically adjusting exploration–exploitation behaviour based on observed function landscapes.
 
-Intended Use
+#Intended Use
 
 This model is designed for optimising continuous, expensive-to-evaluate black-box functions in low-to-moderate dimensional settings (≤ 8 dimensions) where evaluation budgets are limited.
 
-Recommended use cases:
+#Recommended use cases:
 
 Hyperparameter tuning for machine learning models
 Scientific simulations with costly evaluations
 Engineering design optimisation problems
 
-Not recommended for:
+#Not recommended for:
 
 High-dimensional optimisation tasks > 20 dimensions
 Real-time or latency-sensitive systems
@@ -32,29 +33,29 @@ Later stages: lower β (e.g., 0.01) to prioritise exploitation
 
 Over the course of ten optimisation rounds, the strategy evolved from static exploration to context-aware adaptation, where β was manually adjusted based on observed landscape characteristics (e.g., flat regions vs. sharp peaks).
 
-Performance
+#Performance
 
 Performance was evaluated based on the maximum objective value identified for each function.
 
-Strengths:
+#Strengths:
 
 Strong performance on functions with clear gradients and well-defined optima
 Achieved high peak values on:
 Function 5: 1012.90
 Function 8: 9.18
 
-Weaknesses:
+#Weaknesses:
 
 Reduced effectiveness on flat or deceptive landscapes (e.g., Function 1)
 Performance variability due to sensitivity to early sampling decisions
 Assumptions and Limitations
 
-Assumptions:
+#Assumptions:
 
 The objective function is continuous and reasonably smooth
 Local structure can be approximated effectively by a Gaussian Process
 
-Limitations:
+#Limitations:
 
 Curse of dimensionality: Performance degrades as dimensionality increases
 Limited query budget: With only 10 evaluations, the model cannot fully explore higher-dimensional spaces (6D–8D)
