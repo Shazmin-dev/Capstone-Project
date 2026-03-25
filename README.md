@@ -96,5 +96,5 @@ A summary of the results and what I have learnt from the model will be written u
 
 
 # (OPTIONAL: CONTACT DETAILS)
-If you are planning on making your github repo public you may wish to include some contact information such as a link to your twitter or an email address.
+https://github.com/Shazmin-dev/Capstone-Project
 
